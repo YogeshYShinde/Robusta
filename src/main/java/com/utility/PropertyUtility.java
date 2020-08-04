@@ -15,19 +15,19 @@ public class PropertyUtility {
 	 * @param key
 	 * @return value in form of{@code String}
 	 */
-	public static String getProperty(String key) {
+	public static String getProperty(String key,String proprtiesFilepath) {
 		String value = null;
 		FileInputStream fis;
 		
 		try {
-			 fis = new FileInputStream("src\\main\\resources\\LivingPage.properties");
+			fis = new FileInputStream(proprtiesFilepath);
 			Properties prop= new Properties();
 			prop.load(fis);
 					value = prop.getProperty(key);
 		} catch (IOException e) {
-			System.out.println("Unable to load Properties File)");
+			System.out.println("Unable to load Properties File");
 			e.printStackTrace();
 		}
 		return value;
-												}
+											}
 	}

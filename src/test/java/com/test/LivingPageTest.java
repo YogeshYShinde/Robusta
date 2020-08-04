@@ -19,17 +19,17 @@ import com.utility.PropertyUtility;
 
 public class LivingPageTest {
 	LivingPage livingpage;
-
+    String LivingPagefilepath= "src\\main\\resources\\LivingPage.properties";
 	@BeforeTest
 	public void openBrowser() {
 		Keywords.openBrowser("Chrome");
-		Keywords.launchURL(PropertyUtility.getProperty("ApplicationURL"));
+		Keywords.launchURL(PropertyUtility.getProperty("ApplicationURL",LivingPagefilepath));
 		String expectedUrl = Constants.driver.getCurrentUrl();
 		Assert.assertEquals(expectedUrl, "https://www.urbanladder.com/");
 		// Keywords.maximizeBrowser();
 		Keywords.loggerInfo("Open browser ,Entering appliction url and maximizing browser");
 		Keywords.sleep();
-		Keywords.clickOnElement("CSS", PropertyUtility.getProperty("StatingPop_up"));
+		Keywords.clickOnElement("CSS", PropertyUtility.getProperty("StatingPop_up",LivingPagefilepath));
 		livingpage = new LivingPage();
 
 	}
@@ -38,7 +38,7 @@ public class LivingPageTest {
 	public void livingMenuDisplay() {
 		livingpage.visibility_LivingMenuTitle();
 		Assert.assertTrue(true);
-		Keywords.hoverOnElement("CSS", PropertyUtility.getProperty("LivingMenu"));
+		Keywords.hoverOnElement("CSS", PropertyUtility.getProperty("LivingMenu",LivingPagefilepath));
 		Keywords.loggerInfo("Verify 'Living' Menu is visible or not");
 
 	}
@@ -60,7 +60,7 @@ public class LivingPageTest {
 
 	@Test(priority=4)
 	public void getSofasetItems() {
-		List<WebElement> list = Constants.driver.findElements(By.cssSelector(PropertyUtility.getProperty("Sofa_Set_SubMenu")));
+		List<WebElement> list = Constants.driver.findElements(By.cssSelector(PropertyUtility.getProperty("Sofa_Set_SubMenu",LivingPagefilepath)));
 		Constants.actualList = new ArrayList<String>();
 		Iterator<WebElement> itr = list.iterator();
 		while (itr.hasNext()) {
